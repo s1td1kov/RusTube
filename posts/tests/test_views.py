@@ -199,7 +199,7 @@ class PostPagesTests(TestCase):
             reverse('profile_unfollow', args=('test-user',)))
         self.assertTrue(self.user.follower.count() == 0)
 
-    def test_follow_shows_correct_post(self):
+    def test_follow_shows_correct_post_for_follower(self):
         self.authorized_client2.get(
             reverse('profile_follow', args=('SitdikovR',)))
         response = self.authorized_client2.get(reverse('follow_index'))
@@ -208,6 +208,7 @@ class PostPagesTests(TestCase):
         self.assertEqual(follow_post.author, self.user)
         self.assertEqual(follow_post.group, self.group)
 
+    def test_follow_shows_correct_post_for_now_follower(self):
         self.authorized_client2.get(
             reverse('profile_unfollow', args=('SitdikovR',)))
         response = self.authorized_client2.get(reverse('follow_index'))
