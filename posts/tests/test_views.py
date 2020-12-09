@@ -1,6 +1,4 @@
-import os
 import shutil
-import tempfile
 
 from django import forms
 from django.conf import settings
@@ -11,8 +9,7 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
-from posts.contansts import POSTS_PER_PAGE
-from posts.models import Follow, Group, Post, User
+from posts.models import Group, Post
 
 
 class PostPagesTests(TestCase):
@@ -87,7 +84,8 @@ class PostPagesTests(TestCase):
         template_names = {
             'new.html': reverse('new_post'),
             'index.html': reverse('index'),
-            'group.html': reverse('group_posts', kwargs={'slug': self.group.slug}),
+            'group.html': reverse('group_posts',
+                                  kwargs={'slug': self.group.slug}),
         }
         for template, reverse_name in template_names.items():
             with self.subTest(reverse_name=reverse_name):
@@ -105,7 +103,7 @@ class PostPagesTests(TestCase):
         self.assertEqual(post_author_0, self.user)
         self.assertEqual(post_group_0, self.group)
         self.assertEqual(post_image_0, self.post.image)
-        self.assertTrue(len(response.context.get('page')) <= POSTS_PER_PAGE)
+        self.assertTrue(len(response.context.get('page')) <= settings.POSTS_PER_PAGE)
 
     def test_group_page_show_correct_context(self):
         response = self.authorized_client.get(
@@ -134,7 +132,8 @@ class PostPagesTests(TestCase):
 
     def test_username_post_edit_show_correct_context(self):
         response = self.authorized_client.get(
-            reverse('post_edit', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            reverse('post_edit', kwargs={'username': self.user.username,
+                                         'post_id': self.post.id}))
         form_fields = {
             'text': forms.fields.CharField,
         }
@@ -160,7 +159,7 @@ class PostPagesTests(TestCase):
         profile_username = response.context.get('username')
         profile_post_count = response.context.get('paginator').count
         profile_page = response.context.get('page')
-        self.assertTrue(len(profile_page) <= POSTS_PER_PAGE)
+        self.assertTrue(len(profile_page) <= settings.POSTS_PER_PAGE)
         self.assertEqual(profile_username.username, self.user.username)
         self.assertEqual(profile_post_count, 1)
         self.assertEqual(profile_page[0].image, self.post.image)

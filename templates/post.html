@@ -4,32 +4,7 @@
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-3 mb-3 mt-1">
-            <div class="card">
-                <div class="card-body">
-                    <div class="h2">
-                        <!-- Имя автора -->
-                        {{ post.author.get_full_name }}
-                    </div>
-                    <div class="h3 text-muted">
-                        <!-- username автора -->
-                        {{ post.author.username }}
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class="h6 text-muted">
-                            Подписчиков: {{ followers }} <br />
-                            Подписан: {{ followings }}
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="h6 text-muted">
-                            <!--Количество записей -->
-                            Записей: {{ post_count }}
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            {% include 'includes/card.html' with username=username following=following followers=followers post_count=post_count is_following=is_following%}
         </div>
 
         <div class="col-md-9">

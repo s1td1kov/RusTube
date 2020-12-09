@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1@kg@13q2%*@=*oaw^p9s&01)tgav)ry$+!ro5dm=+$$gg9_#$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -30,6 +30,8 @@ ALLOWED_HOSTS = [
     "[::1]",
     "testserver",
 ]
+
+POSTS_PER_PAGE = 10
 
 # Application definition
 

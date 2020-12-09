@@ -47,7 +47,6 @@ class PostModelTest(TestCase):
                 )
 
     def test_object_name_is_field(self):
-        """В поле __str__  объекта post записано значение поля post.text[:15]"""
         post = PostModelTest.post
         expected_object_name = post.text[:15]
         self.assertEqual(expected_object_name, str(post))
@@ -58,7 +57,8 @@ class GroupModelTest(TestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.group = Group.objects.create(title='Тестовая группа', description='Тестовое описание'
+        cls.group = Group.objects.create(title='Тестовая группа',
+                                         description='Тестовое описание'
                                          )
 
     def test_verbose_name(self):
@@ -91,7 +91,6 @@ class GroupModelTest(TestCase):
                 )
 
     def test_object_name_is_title_field(self):
-        """В поле __str__  объекта task записано значение поля task.title."""
         group = GroupModelTest.group
         expected_object_name = group.title
         self.assertEqual(expected_object_name, str(group))

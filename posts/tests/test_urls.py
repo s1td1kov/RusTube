@@ -81,10 +81,14 @@ class PostGroupURLTests(TestCase):
     def test_users_correct_template(self):
         templates_url_name = {
             'index.html': reverse('index'),
-            'group.html': reverse('group_posts', kwargs={'slug': self.group.slug}),
+            'group.html': reverse('group_posts',
+                                  kwargs={'slug': self.group.slug}),
             'new.html': reverse('new_post'),
-            'profile.html': reverse('profile', kwargs={'username': self.user.username}),
-            'post.html': reverse('post', kwargs={'username': self.user.username, 'post_id': self.post.id}),
+            'profile.html': reverse('profile',
+                                    kwargs={'username': self.user.username}),
+            'post.html': reverse('post',
+                                 kwargs={'username': self.user.username,
+                                         'post_id': self.post.id}),
         }
 
         for template, reverse_name in templates_url_name.items():
@@ -99,7 +103,8 @@ class PostGroupURLTests(TestCase):
 
     def test_username_post_page_url_exists_at_desired_location(self):
         response = self.guest_client.get(reverse(
-            'post', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            'post', kwargs={'username': self.user.username,
+                            'post_id': self.post.id}))
         self.assertEqual(response.status_code, 200)
 
     def test_flatpage_about_author_url_exists_at_desired_location(self):
@@ -112,17 +117,20 @@ class PostGroupURLTests(TestCase):
 
     def test_guest_post_edit_url_exists_at_desired_location(self):
         response = self.guest_client.get(reverse(
-            'post_edit', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            'post_edit', kwargs={'username': self.user.username,
+                                 'post_id': self.post.id}))
         self.assertEqual(response.status_code, 302)
 
     def test_author_post_edit_url_exists_at_desired_location(self):
         response = self.authorized_client.get(reverse(
-            'post_edit', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            'post_edit', kwargs={'username': self.user.username,
+                                 'post_id': self.post.id}))
         self.assertEqual(response.status_code, 200)
 
     def test_not_author_edit_url_exists_at_desired_location(self):
         response = self.authorized_client2.get(reverse(
-            'post_edit', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            'post_edit', kwargs={'username': self.user.username,
+                                 'post_id': self.post.id}))
         self.assertEqual(response.status_code, 302)
 
     def test_returns_404_if_doesnt_exist_page(self):
@@ -132,33 +140,41 @@ class PostGroupURLTests(TestCase):
     def test_post_url_redirects_correct_template_for_guest(self):
         response = self.guest_client.get(reverse('post_edit', kwargs={
                                          'username': self.user.username,
-                                         'post_id': self.post.id}), follow=True)
-        self.assertRedirects(response, reverse('login') +
-                             '?next=' + reverse('post_edit', kwargs={'username': self.user.username,
-                                                                     'post_id': self.post.id}))
+                                         'post_id': self.post.id}),
+                                         follow=True)
+        self.assertRedirects(response, reverse('login') + '?next=' +
+                             reverse('post_edit', kwargs={
+                                 'username': self.user.username,
+                                 'post_id': self.post.id})
+                             )
 
     def test_post_url_redirects_correct_template_not_author(self):
         response = self.authorized_client2.get(
             reverse('post_edit', kwargs={'username': self.user.username,
-                                         'post_id': self.post.id}), follow=True)
+                                         'post_id': self.post.id}),
+            follow=True)
         self.assertRedirects(response, reverse(
-            'post', kwargs={'username': self.user.username, 'post_id': self.post.id}))
+            'post', kwargs={'username': self.user.username,
+                            'post_id': self.post.id}))
 
     def test_author_shows_correct_template(self):
         response = self.authorized_client.get(
             reverse('post_edit', kwargs={'username': self.user.username,
-                                         'post_id': self.post.id}), follow=True)
+                                         'post_id': self.post.id}),
+            follow=True)
         self.assertTemplateUsed(response, 'new.html')
 
     def test_not_author_shows_correct_template(self):
         response = self.authorized_client2.get(
             reverse('post_edit', kwargs={'username': self.user.username,
-                                         'post_id': self.post.id}), follow=True)
+                                         'post_id': self.post.id}),
+            follow=True)
         self.assertTemplateUsed(response, 'post.html')
 
     def test_only_auth_can_comment(self):
         response = self.guest_client.get(
             reverse('add_comment', args=('SitdikovR', 1)), follow=True)
-        self.assertRedirects(response, reverse('login') +
-                             '?next=' + reverse('add_comment', kwargs={'username': self.user.username,
-                                                                       'post_id': self.post.id}))
+        self.assertRedirects(response, reverse('login') + '?next=' +
+                             reverse('add_comment',
+                                     kwargs={'username': self.user.username,
+                                             'post_id': self.post.id}))

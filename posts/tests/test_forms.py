@@ -1,8 +1,5 @@
-import os
 import shutil
-import tempfile
 
-from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -26,7 +23,11 @@ class PostsCreateFormTests(TestCase):
         cls.authorized_client = Client()
         cls.authorized_client.force_login(cls.user)
         cls.post = Post.objects.create(
-            author=cls.user, group=cls.group, text='тестовый пост', id=cls.group.id)
+            author=cls.user,
+            group=cls.group,
+            text='тестовый пост',
+            id=cls.group.id
+        )
 
     def setUp(self):
         super().setUp()
@@ -69,7 +70,7 @@ class PostsCreateFormTests(TestCase):
             'text': 'новый тест',
             'post_id': self.post.id
         }
-        response = self.authorized_client.post(
+        self.authorized_client.post(
             reverse('post_edit', kwargs={
                 'username': self.user.username, 'post_id': self.post.id}),
             data=form_data,
