@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <title>Coverage for users/views.py: 100%</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="jquery.isonscreen.js"></script>
+    <script type="text/javascript" src="coverage_html.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(coverage.pyfile_ready);
+    </script>
+</head>
+<body class="pyfile">
+<div id="header">
+    <div class="content">
+        <h1>Coverage for <b>users/views.py</b> :
+            <span class="pc_cov">100%</span>
+        </h1>
+        <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
+        <h2 class="stats">
+            7 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">7 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
+            <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
+        </h2>
+    </div>
+</div>
+<div class="help_panel">
+    <img id="panel_icon" src="keybd_open.png" alt="Hide keyboard shortcuts" />
+    <p class="legend">Hot-keys on this page</p>
+    <div>
+    <p class="keyhelp">
+        <span class="key">r</span>
+        <span class="key">m</span>
+        <span class="key">x</span>
+        <span class="key">p</span> &nbsp; toggle line displays
+    </p>
+    <p class="keyhelp">
+        <span class="key">j</span>
+        <span class="key">k</span> &nbsp; next/prev highlighted chunk
+    </p>
+    <p class="keyhelp">
+        <span class="key">0</span> &nbsp; (zero) top of page
+    </p>
+    <p class="keyhelp">
+        <span class="key">1</span> &nbsp; (one) first highlighted chunk
+    </p>
+    </div>
+</div>
+<div id="source">
+    <p id="t1" class="pln"><span class="n"><a href="#t1">1</a></span><span class="t"><span class="com">#  &#1080;&#1084;&#1087;&#1086;&#1088;&#1090;&#1080;&#1088;&#1091;&#1077;&#1084; CreateView, &#1095;&#1090;&#1086;&#1073;&#1099; &#1089;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; &#1077;&#1084;&#1091; &#1085;&#1072;&#1089;&#1083;&#1077;&#1076;&#1085;&#1080;&#1082;&#1072;</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t2" class="run"><span class="n"><a href="#t2">2</a></span><span class="t"><span class="key">from</span> <span class="nam">django</span><span class="op">.</span><span class="nam">views</span><span class="op">.</span><span class="nam">generic</span> <span class="key">import</span> <span class="nam">CreateView</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t3" class="pln"><span class="n"><a href="#t3">3</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t4" class="pln"><span class="n"><a href="#t4">4</a></span><span class="t"><span class="com">#  &#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103; reverse_lazy &#1087;&#1086;&#1079;&#1074;&#1086;&#1083;&#1103;&#1077;&#1090; &#1087;&#1086;&#1083;&#1091;&#1095;&#1080;&#1090;&#1100;</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t5" class="pln"><span class="n"><a href="#t5">5</a></span><span class="t"><span class="com">#  URL &#1087;&#1086; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1091; "name" &#1092;&#1091;&#1085;&#1082;&#1094;&#1080;&#1080; path()</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t6" class="pln"><span class="n"><a href="#t6">6</a></span><span class="t"><span class="com">#  &#1073;&#1077;&#1088;&#1105;&#1084;, &#1090;&#1086;&#1078;&#1077; &#1087;&#1088;&#1080;&#1075;&#1086;&#1076;&#1080;&#1090;&#1089;&#1103;</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t7" class="run"><span class="n"><a href="#t7">7</a></span><span class="t"><span class="key">from</span> <span class="nam">django</span><span class="op">.</span><span class="nam">urls</span> <span class="key">import</span> <span class="nam">reverse_lazy</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t8" class="pln"><span class="n"><a href="#t8">8</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t9" class="pln"><span class="n"><a href="#t9">9</a></span><span class="t"><span class="com">#  &#1080;&#1084;&#1087;&#1086;&#1088;&#1090;&#1080;&#1088;&#1091;&#1077;&#1084; &#1082;&#1083;&#1072;&#1089;&#1089; &#1092;&#1086;&#1088;&#1084;&#1099;, &#1095;&#1090;&#1086;&#1073;&#1099; &#1089;&#1086;&#1089;&#1083;&#1072;&#1090;&#1100;&#1089;&#1103; &#1085;&#1072; &#1085;&#1077;&#1105; &#1074;&#1086; view-&#1082;&#1083;&#1072;&#1089;&#1089;&#1077;</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t10" class="run"><span class="n"><a href="#t10">10</a></span><span class="t"><span class="key">from</span> <span class="op">.</span><span class="nam">forms</span> <span class="key">import</span> <span class="nam">CreationForm</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t11" class="pln"><span class="n"><a href="#t11">11</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t12" class="pln"><span class="n"><a href="#t12">12</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t13" class="run"><span class="n"><a href="#t13">13</a></span><span class="t"><span class="key">class</span> <span class="nam">SignUp</span><span class="op">(</span><span class="nam">CreateView</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t14" class="run"><span class="n"><a href="#t14">14</a></span><span class="t">    <span class="nam">form_class</span> <span class="op">=</span> <span class="nam">CreationForm</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t15" class="run"><span class="n"><a href="#t15">15</a></span><span class="t">    <span class="nam">success_url</span> <span class="op">=</span> <span class="nam">reverse_lazy</span><span class="op">(</span><span class="str">"signup"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t16" class="pln"><span class="n"><a href="#t16">16</a></span><span class="t">    <span class="com">#  &#1075;&#1076;&#1077; signup &#8212; &#1101;&#1090;&#1086; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088; "name" &#1074; path()</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t17" class="run"><span class="n"><a href="#t17">17</a></span><span class="t">    <span class="nam">template_name</span> <span class="op">=</span> <span class="str">"signup.html"</span>&nbsp;</span><span class="r"></span></p>
+</div>
+<div id="footer">
+    <div class="content">
+        <p>
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
+            created at 2020-11-25 18:54 +0300
+        </p>
+    </div>
+</div>
+</body>
+</html>
