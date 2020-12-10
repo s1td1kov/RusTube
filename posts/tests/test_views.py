@@ -191,10 +191,12 @@ class PostPagesTests(TestCase):
         post = response.context.get('page')[0]
         self.assertEqual(post.text, self.post.text)
 
-    def test_auth_can_follow_and_unfollow(self):
+    def test_auth_can_follow(self):
         self.authorized_client.get(
             reverse('profile_follow', args=('test-user',)))
         self.assertTrue(self.user.follower.count() == 1)
+
+    def test_auth_can_unfollow(self):
         self.authorized_client.get(
             reverse('profile_unfollow', args=('test-user',)))
         self.assertTrue(self.user.follower.count() == 0)
