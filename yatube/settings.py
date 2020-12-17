@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "[::1]",
     "testserver",
+    '*',
 ]
 
 POSTS_PER_PAGE = 10

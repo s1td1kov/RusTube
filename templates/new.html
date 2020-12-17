@@ -22,11 +22,6 @@
           <form action="{% url 'new_post'%}" method="post" enctype="multipart/form-data">
         {% endif %}
           {% csrf_token %}
-          {% for error in form.errors %}
-          <div class="alert alert-danger" role="alert">
-            {{ error|escape }}
-          </div>
-          {% endfor %}
           {% for field in form %}
           <div class="form-group row" aria-required={% if field.field.required %}"true"{% else %}"false"{% endif %}>
             <label for="{{ field.id_for_label }}"
