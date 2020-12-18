@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .forms import CommentForm, PostForm
 from .models import Follow, Group, Post, User
@@ -147,6 +149,16 @@ def profile_follow(request, username):
             user_id=request.user.id,
             author_id=author.id,
         )
+        if author.email:
+            author_posts = ''
+            for post in author.posts.all():
+                author_posts += str(post) + '\n'
+            send_mail(
+                f'Посты автора {author.username}',
+                author_posts,
+                'sitdikov.rb@phystech.edu',
+                ['razergsaints@gmail.com'],
+            )
     return redirect('profile', username)
 
 
