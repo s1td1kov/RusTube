@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1@kg@13q2%*@=*oaw^p9s&01)tgav)ry$+!ro5dm=+$$gg9_#$'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -153,14 +153,14 @@ LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "index"
 
 #  подключаем движок filebased.EmailBackend
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # указываем директорию, в которую будут складываться файлы писем
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 SITE_ID = 1
 
-EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_USER = 'mipter.info@gmail.com'
+EMAIL_HOST_PASSWORD = '1234test'

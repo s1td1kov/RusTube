@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage, send_mail
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
@@ -149,16 +149,17 @@ def profile_follow(request, username):
             user_id=request.user.id,
             author_id=author.id,
         )
-        if author.email:
+        if request.user.email:
             author_posts = ''
             for post in author.posts.all():
                 author_posts += str(post) + '\n'
-            send_mail(
-                f'Посты автора {author.username}',
-                author_posts,
-                'sitdikov.rb@phystech.edu',
-                ['razergsaints@gmail.com'],
-            )
+            email = EmailMessage(f'Thank You for following {author.username}', 
+                                    author_posts, 
+                                    'mipter.info@gmail.com',
+                                    [request.user.email],
+                                    )
+            email.fail_silently = False
+            email.send()
     return redirect('profile', username)
 
 
